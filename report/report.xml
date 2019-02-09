@@ -1,0 +1,40 @@
+<odoo>
+
+    <report
+        id="report_decharge"
+        model="decharge.decharge"
+        string="Rapport Décharge"
+        name="gestion_dotations.report_decharge_view"
+        report_type="qweb-pdf" />
+
+    <template id="report_decharge_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+			          <h2>Rapport De Décharge</h2>
+				      <p>Nom de l'employé :<span t-field="doc.employe_id.name"/></p>
+					  <p>Dotation :<span t-field="doc.dotation_id.name"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+	<record id="paperformat_specifique" model="report.paperformat">
+	<field name="name">Décharge format</field>
+	<field name="default" eval="True"/>
+	<field name="format">custom</field>
+	<field name="page_height">210</field>
+	<field name="page_width">270</field>
+	<field name="orientation">Portrait</field>
+	<field name="margin_top">8</field>
+	<field name="margin_bottom">8</field>
+	<field name="margin_left">4</field>
+	<field name="margin_right">4</field>
+	<field name="header_line" eval="False"/>
+	<field name="header_spacing">3</field>
+	<field name="dpi">90</field>
+	</record>
+
+
+</odoo>
