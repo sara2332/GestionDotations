@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+      <record id="view_dec_request_form" model="ir.ui.view">
+        <field name="name">view.dec.request.form</field>
+        <field name="model">decharge.decharge</field>
+        <field name="arch" type="xml">
+          <form name="Decharge Request Form">
+              <header>
+                  <button name="validate_request" string="Valider" class="oe_highlight" states="brouillon" type="object" groups="hr.group_hr_manager"/>
+				  <button name="compter_decharge" string="Compter" class="oe_highlight" type="object"/>
+                  <field name="state" widget="statusbar" statusbar_visible="brouillon,validé"/>
+              </header>
+            <sheet>
+              <div class="oe_title">
+                  <label for="name" class="oe_edit_only"/>
+                  <h1>
+                      <field name="name" placeholder="Décharge"/>
+                  </h1>
+              </div>
+              <group>
+                  <group>
+                      <field name="date_from"/>
+                      <field name="date_to"/>
+                  </group>
+                  <group>
+                      <field name="employe_id"/>
+                      <field name="dotation_id"/>
+                  </group>
+              </group>
+            </sheet>
+          </form>
+
+        </field>
+      </record>
+
+        <record id="view_dec_request_tree" model="ir.ui.view">
+            <field name="name">view.dec.request.tree</field>
+            <field name="model">decharge.decharge</field>
+            <field name="arch" type="xml">
+                <tree string="Decharge Request Tree">
+                    <field name="name"/>
+                    <field name="employe_id"/>
+                    <field name="dotation_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_dec_request_views" model="ir.actions.act_window">
+            <field name="name">Décharge</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">decharge.decharge</field>
+            <field name="view_mode">tree,form,kanban,research</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Décharge
+              </p><p>
+                Ajouter une nouvelle décharge
+              </p>
+            </field>
+        </record>
+        <menuitem id="decharge_menu" name="Décharges" parent="main_dotation_menu" action="action_dec_request_views"/>
+       
+    </data>
+</odoo>

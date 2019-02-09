@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="employes_form_view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+			        <xpath expr="//field[@name='department_id']" position="before">
+                            <field name="nbDecharge"/>
+					</xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_employe">
+            <field name="name">Employés</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form,kanban,search</field>
+        </record>
+        <menuitem id="main_dotation_menu" name="Gestion Dotations"/>
+        <menuitem id="employe_menu" name="Employes" parent="main_dotation_menu"   
+                  action="action_view_employe"/>
+
+</odoo>

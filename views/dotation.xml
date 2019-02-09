@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="articles_form_view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+						   <xpath expr="//field[@name='barcode']" position="after">
+                            <field name="dote"/>
+						   </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_dotation">
+            <field name="name">Dotations</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form,kanban,search</field>
+        </record>
+        <menuitem id="main_dotation_menu" name="Gestion Dotations"/>
+        <menuitem id="dotation_menu" name="Dotations" parent="main_dotation_menu"   
+                  action="action_view_dotation"/>
+
+</odoo>
